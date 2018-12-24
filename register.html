@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>register</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  	.panel{
+  		margin-top: 10%;
+  		margin-left: 20%;
+  	}
+  </style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading"><center>Registration</center></div>
+				<div class="panel-body">
+<form action="home.html">
+
+          <div class="row">
+            <div class="col-md-4">
+               <label>First Name*</label>
+            </div>
+            <div class="col-md-8">
+               <input type="text" id='firstname' class="form-control" placeholder="enter first name" required >
+          
+
+            </div></div>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+              <label>Middle Name</label>
+            </div>
+            <div class="col-md-8">
+               <input type="text" class="form-control" placeholder="enter middle name">
+
+            </div></div><br>
+          
+          <div class="row">
+            <div class="col-md-4">
+              <label>Last Name*</label>
+            </div>
+            <div class="col-md-8">
+              <input type="text" id='lastname' class="form-control" placeholder="enter last name" required >
+  
+
+            </div></div><br>
+            <div class="row">
+            <div class="col-md-4">
+              <label>Email</label>
+            </div>
+            <div class="col-md-8">
+              <input type="email" id='email' class="form-control" placeholder="enter email here" required >
+      
+
+
+            </div></div><br>
+            <div class="row">
+            <div class="col-md-4">
+              <label>Mobile Number</label>
+            </div>
+            <div class="col-md-8">
+              <input type="number" class="form-control" placeholder="enter mobile number" >
+
+            </div></div><br>
+            <div class="row">
+            <div class="col-md-4">
+              <label>Password</label>
+            </div>
+            <div class="col-md-8">
+              <input type="password" id="password" class="form-control" placeholder="enter password here" required >
+                        
+
+
+            </div></div><br>
+            <div class="row">
+            <div class="col-md-4">
+              <label>Confirm Password</label>
+            </div>
+            <div class="col-md-8">
+              <input type="password" id="cpassword" class="form-control" placeholder="enter password" required >
+                      
+
+
+            </div></div>
+          
+						<center><button type="submit" class="btn btn-primary" >Register</button></center>
+
+
+				</div>
+			</div>
+           <script>
+        var password = document.getElementById("password");
+  var cpassword = document.getElementById("cpassword");
+
+function validatePassword(){
+  if(password.value != cpassword.value) {
+    cpassword.setCustomValidity("Passwords Don't Match");
+  } else {
+    cpassword.setCustomValidity('');
+  }
+}
+
+password.onchange = validatePassword;
+cpassword.onkeyup = validatePassword;
+      </script>
+ 
+</body>

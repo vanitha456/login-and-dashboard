@@ -1,0 +1,219 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>task</title>
+ <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+ <script src="../Scripts/jquery-1.11.0.min.js"></script>
+ </head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6">
+        <h2>Student details</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <table id="studentTable" 
+               class="table table-bordered table-condensed table-striped">
+          <thead>
+            <tr>
+              
+              <th>Edit</th>
+              <th>Student id</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Class</th>
+              <th>Year</th>
+              <th>City</th>
+              <th>Country</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            Student Information
+          </div>
+          <div class="panel-body">
+            <div class="row">
+              <div class="col-md-4">
+              <label for="id"> Student Id </label> </div>
+              <div class="col-md-8">             
+              <input type="text" class="form-control" value="student Id" id="id" />  </div>
+              </div><br> 
+              <div class="row">
+              <div class="col-md-4">       
+              <label for="name">Student Name</label></div>
+              <div class="col-md-8">
+              <input type="text" class="form-control" value="name" id="name" /></div>
+              </div>
+              <br>
+              <div class="row">
+              <div class="col-md-4">    
+              <label for="email">Student Email</label></div>
+              <div class="col-md-8">
+              <input type="email" class="form-control" value="email" id="email" /></div>
+            </div>
+            <br>
+            <div class="row">
+            <div class="col-md-4">
+              <label for="class">Student Class</label></div>
+              <div class="col-md-8">
+              <input type="text" class="form-control" value="class" id="class" /></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+              <label for="year">Enrollment Year</label></div>
+              <div class="col-md-8">
+              <input type="number" class="form-control" value="1994" id="year" /></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+              <label for="city">City</label></div>
+              <div class="col-md-8">
+              <input type="text" class="form-control" value="student city" id="city" /></div>
+            </div>
+            <br>
+            <div class="row">
+              <div class="col-md-4">
+              <label for="country">Country</label></div>
+              <div class="col-md-8">
+              <input type="text" class="form-control" value="country" id="country" /></div>
+            </div><br>
+                      <CENTER>  <button type="button" id="updateButton" class="btn btn-primary" onclick="studentUpdate();">Add</button></CENTER>
+
+            </div>
+          </div>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    var nextId = 1;
+    var activeId = 0;
+
+    function studentDisplay(ctl) {
+      var row = $(ctl).parents("tr");
+      var cols = row.children("td");
+
+      activeId = $($(cols[0]).children("button")[0]).data("id");
+            $("#id").val($(cols[1]).text());
+
+      $("#name").val($(cols[2]).text());
+      $("#email").val($(cols[3]).text());
+      $("#class").val($(cols[4]).text());
+     $("#year").val($(cols[5]).text());
+      $("#city").val($(cols[6]).text());
+      $("#country").val($(cols[7]).text()); 
+      $("#updateButton").text("Update");
+    }
+
+    function studentUpdate() {
+      if ($("#updateButton").text() == "Update") {
+        studentUpdateInTable(activeId);
+      }
+      else {
+        studentAddToTable();
+      }      
+      formClear();
+      $("#id").focus();
+    }
+
+    
+    function studentAddToTable() {
+  
+      if ($("#studentTable tbody").length == 0) {
+        $("#studentTable").append("<tbody></tbody>");
+      }
+
+  
+      $("#studentTable tbody").append(
+        studentBuildTableRow(nextId));
+
+      
+      nextId += 1;
+    }
+
+
+    function studentUpdateInTable(id) {
+      
+      var row = $("#studentTable button[data-id='" + id + "']")
+                .parents("tr")[0];
+
+      
+      $(row).after(studentBuildTableRow(id));
+    
+      $(row).remove();
+
+  
+      formClear();
+
+      
+      $("#updateButton").text("Add");
+    }
+
+    
+    function studentBuildTableRow(id) {
+      var ret =
+      "<tr>" +
+       "<td>" +
+          "<button type='button' " +
+                  "onclick='studentDisplay(this);' " +
+                  "class='btn btn-default' " +
+                  "data-id='" + id + "'>" +
+                  "<span class='glyphicon glyphicon-edit' />" +
+          "</button>" +
+        "</td>" +
+
+        
+        "<td>" + $("#id").val() + "</td>" +
+        "<td>" + $("#name").val() + "</td>" +
+        "<td>" + $("#email").val() + "</td>" +
+       "<td>" + $("#class").val() + "</td>" +
+        "<td>" + $("#year").val() + "</td>" +
+        "<td>" + $("#city").val() + "</td>" +
+         "<td>" + $("#country").val() + "</td>" +
+        
+        "<td>" +
+          "<button type='button' " +
+                  "onclick='studentDelete(this);' " +
+                  "class='btn btn-default' " +
+                  "data-id='" + id + "'>" +
+                  "<span class='glyphicon glyphicon-remove' />" +
+          "</button>" +
+        "</td>" +
+      "</tr>"
+
+      return ret;
+    }
+
+  
+    function studentDelete(ctl) {
+      $(ctl).parents("tr").remove();
+    } 
+    function formClear() {
+      $("#id").val("");
+      $("#name").val("");
+      $("#email").val("");
+       $("#class").val("");
+       $("#year").val("");
+        $("#city").val("");
+        $("#country").val("");
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <style>
+  	.panel{
+  		margin-top: 20%;
+  		margin-left: 20%;
+  	}
+  </style>
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-6">
+			<div class="panel panel-default">
+				<div class="panel-heading"><center>Login</center></div>
+				<div class="panel-body">
+          <form onsubmit="myfun()">
+					<input type="email" id="email" class="form-control" placeholder="enter email here" required><br>
+						<input type="password" id="password" class="form-control" placeholder="enter password here" required><br>
+						<input type="submit" class="btn btn-primary"  value="login"/>
+						<button class="btn btn-default" ><a href="register.html" >Registration</a></button>
+</form>
+
+				</div>
+			</div>
+    </div>
+  </div>
+      <script>
+      
+       function myfun()
+       {
+        var a=document.getElementById("email");
+        var b=a.value;
+        var c=document.getElementById("password");
+        var d=c.value;
+       if((b=="user@gmail.com") && (d==123456))
+
+    
+     
+        window.open("dashboard.html");
+     
+      else
+        alert("Your values are wrong");
+      
+    }
+      </script>
+
+</body>
+</html>
